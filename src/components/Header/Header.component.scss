@@ -1,0 +1,35 @@
+.header {
+
+  width: 100%;
+  height: 150px;
+ 
+  background-color: #111111;
+
+  display: flex;
+  justify-content: center;
+
+  .header-title {
+
+    width: 70%;
+    height: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    .header-title-big {
+      margin-right: 20px;
+
+      color: white;
+      font-size: 32px;
+      font-weight: 700;
+
+    }
+
+    .header-title-small {
+      
+      color: white;
+      font-size: 14px;
+    }
+  }
+}
