@@ -44,7 +44,7 @@ export const UserComponent = () => {
       </div>
 
       <div>
-        WL : 47%
+        47%
       </div>
     </div>
   )

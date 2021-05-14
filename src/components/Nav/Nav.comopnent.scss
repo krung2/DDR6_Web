@@ -1,0 +1,79 @@
+.navContainer {
+  margin: 30px auto;
+  
+  width: 70%;
+  height: 60px;
+
+  border: 1px solid #c4c4c4;
+  box-sizing: border-box;
+  border-radius: 10px;
+
+  display: flex;
+
+  .navContainer-profile {
+    margin-top: 20px; 
+
+    width: 200px;
+
+    align-items: center;
+    text-align: center;
+
+    font-size: 18px;
+
+  }
+
+  .navContainer-name {
+    margin-top: 20px; 
+
+    width: 132px;
+
+    align-items: center;
+    text-align: right;
+
+    font-size: 18px;
+  }
+
+  .navContainer-level {
+    margin-top: 20px; 
+
+    width: 103px;
+
+    align-items: center;
+    text-align: center;
+
+    font-size: 18px;
+  }
+
+  .navContainer-rank {
+    margin-top: 20px; 
+
+    width: 137px;
+
+    align-items: center;
+    text-align: center;
+
+    font-size: 18px;
+  }
+
+  .navContainer-KD {
+    margin-top: 20px; 
+
+    width: 125px;
+
+    align-items: center;
+    text-align: center;
+
+    font-size: 18px; 
+  }
+
+  .navContainer-WL {
+    margin-top: 20px; 
+
+    width: 174px;
+
+    align-items: center;
+    text-align: center;
+
+    font-size: 18px; 
+  }
+}
