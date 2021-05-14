@@ -1,11 +1,13 @@
 import React from 'react';
-import { HeaderComponent } from './components/Header/Header.component';
+import { Switch } from 'react-router';
+import { MainComponent } from './components/Main.component';
+import { MainPage } from './pages/Main.pages';
 
 function App() {
   return (
-    <>
-      <HeaderComponent />
-    </>
+    <Switch >
+      <MainPage />
+    </Switch>
   );
 }
 

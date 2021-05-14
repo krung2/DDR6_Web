@@ -1,0 +1,132 @@
+.userContainer {
+  margin: 30px auto;
+
+  width: 70%;
+  height: 104px;
+
+  display: flex;
+  align-items: center;
+
+  border: 1px solid #c4c4c4;
+  box-sizing: border-box;
+  border-radius: 10px;
+
+  .userContainer-img {
+    width: 100px;
+    height: 60px;
+
+    display: block;
+    align-items: center;
+    
+    .userCenter-profile {
+      margin: 0 20px;
+
+      width: 60px;
+      height: 60px;
+
+      border-radius: 50%;
+    }
+  }
+  
+  .userContainer-name {
+
+    width: 160px;
+
+    word-break: break-all;
+
+    font-weight: 700;
+    font-size: 18px;
+  }
+
+  .userContainer-generation {
+    display: flex;
+    align-items: center;
+    text-align: center;
+  }
+
+  .userContainer-level {
+    width: 100px;
+
+    text-align: center;
+  }
+
+  .userContainer-rank {
+
+    .userContainer-rank-img {
+      width: 60px;
+      height: 60px;
+
+    }
+  }
+
+  .usercontainer-rank-text {
+    width: 80px;
+    
+    text-align: center;
+  }
+
+  .usercontainer-kd {
+    width: 120px;
+
+    text-align: center;
+  }
+
+  .usercontainer-con {
+
+    width: 185px;
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    .usercontainer-con-graph {
+
+      width: 150px;
+      height: 25px;
+      margin-left: 15px;
+
+      background-color: #ee5a52;
+
+      border-radius: 5px;
+
+      display: flex;
+      align-items: center;
+      text-align: center;
+      justify-content: space-between;
+
+      .usercontainer-con-graph-win {
+        margin-left: 5px;
+        position: fixed;
+
+
+        color: white;
+      }
+
+      .usercontainer-con-graph-okay {
+        padding-left: 5px;
+
+        width: 47%;
+        height: 100%;
+
+        background-color: #6482e4;
+
+        border-radius: 5px 0 0 5px;
+
+        color: white;
+        text-align: left;
+        align-items: center;
+        display: flex;
+      }
+
+      .usercontainer-con-graph-okay-loose {
+        margin-right: 5px;
+        
+        display: block;
+        text-align: right;
+
+        color: white;
+
+      }
+    }
+  }
+}
