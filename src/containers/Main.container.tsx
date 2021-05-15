@@ -11,12 +11,15 @@ export const MainContainer = (): JSX.Element => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isLogin, setIsLogin] = useState<boolean>(true);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+  const [generation, setGeneration] = useState<string>();
+  const [nickName, setNickName] = useState<string>();
+
   const { stores } = useStores();
   const {
     users,
     hadleGetUser,
   } = stores.MainStore;
-
 
   const request: () => Promise<void> = useCallback(async () => {
 
@@ -75,6 +78,8 @@ export const MainContainer = (): JSX.Element => {
       <MainComponent
         isLogin={isLogin}
         modalOpenGroup={GroupingState('isModalOpen', isModalOpen, setIsModalOpen)}
+        generationGroup={GroupingState('generation', generation, setGeneration)}
+        nickNameGroup={GroupingState('nickName', nickName, setNickName)}
         userInfo={userInfo}
       />
     </>

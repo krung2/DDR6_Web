@@ -12,6 +12,16 @@ interface MainComponentProps {
     setIsModalOpen: Dispatch<SetStateAction<boolean>>,
   }
 
+  generationGroup: {
+    generation: string,
+    setGeneration: Dispatch<SetStateAction<string>>,
+  }
+
+  nickNameGroup: {
+    nickName: string,
+    setNickName: Dispatch<SetStateAction<string>>,
+  }
+
   userInfo: JSX.Element[];
 
 }
@@ -19,13 +29,15 @@ interface MainComponentProps {
 export const MainComponent = ({
   isLogin,
   modalOpenGroup,
+  generationGroup,
+  nickNameGroup,
   userInfo,
 }: MainComponentProps): JSX.Element => {
-  const { isModalOpen } = modalOpenGroup;
+  const { isModalOpen, setIsModalOpen } = modalOpenGroup;
 
   return (
     <>
-      {isModalOpen ? <ModalComponent /> : null}
+      {isModalOpen ? <ModalComponent setIsModalOpen={setIsModalOpen} generationGroup={generationGroup} nickNameGroup={nickNameGroup} /> : null}
       <HeaderComponent />
       <NavComopnent
         isLogin={isLogin}
