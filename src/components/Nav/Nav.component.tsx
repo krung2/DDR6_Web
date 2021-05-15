@@ -8,7 +8,7 @@ interface NavComopnentProps {
 
   modalOpenGroup: {
     isModalOpen: boolean,
-    setIsMoalOpen: Dispatch<SetStateAction<boolean>>,
+    setIsModalOpen: Dispatch<SetStateAction<boolean>>,
   }
 
 }
@@ -17,31 +17,27 @@ export const NavComopnent = ({
   isLogin,
   modalOpenGroup,
 }: NavComopnentProps): JSX.Element => {
-  const { isModalOpen, setIsMoalOpen } = modalOpenGroup;
+  const { setIsModalOpen } = modalOpenGroup;
 
   const history = useHistory();
   const url =
     'http://dauth.b1nd.com/login?clientId=cd186f1597ce4365aa4067379ba91415fb75b926fb0b46bab1f247b4877cb9fb&redirectUrl=http://ddr6.com/redirect';
 
-  const useButton: () => void = () => {
-
-    if (isLogin === false) {
-
-      history.push(url);
-    }
-
-    setIsMoalOpen(true);
-  }
-
   return (
     <>
       <div className='navButtons'>
 
-        <a href={isLogin ? '' : url}>
-          <div className='navButtons-login' >
-            {isLogin ? '등록' : '로그인'}
+        {isLogin
+          ? <div className='navButtons-login' onClick={() => setIsModalOpen(true)} >
+            등록
           </div>
-        </a>
+          : <a href={url}>
+            <div className='navButtons-login'>
+              로그인
+            </div>
+          </a>
+        }
+
       </div>
 
       <div className='navContainer'>

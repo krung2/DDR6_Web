@@ -9,7 +9,7 @@ import { DataEntity } from "../stores/Main/MainStore";
 export const MainContainer = (): JSX.Element => {
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [isLogin, setIsLogin] = useState<boolean>(false);
+  const [isLogin, setIsLogin] = useState<boolean>(true);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const { stores } = useStores();
   const {
@@ -74,7 +74,7 @@ export const MainContainer = (): JSX.Element => {
     <>
       <MainComponent
         isLogin={isLogin}
-        modalOpenGroup={GroupingState('modalOpen', isModalOpen, setIsModalOpen)}
+        modalOpenGroup={GroupingState('isModalOpen', isModalOpen, setIsModalOpen)}
         userInfo={userInfo}
       />
     </>
