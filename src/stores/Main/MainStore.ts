@@ -28,6 +28,17 @@ export default class MainStore {
   @observable users: DataEntity[] = [];
 
   @action
+  async handleAddUser() {
+
+    try {
+
+    } catch (err) {
+
+      throw err;
+    }
+  }
+
+  @action
   async hadleGetUser() {
 
     try {

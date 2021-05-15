@@ -14,12 +14,15 @@ interface ModalComponentProps {
     nickName: string,
     setNickName: Dispatch<SetStateAction<string>>,
   }
+
+  requestUser: () => void;
 }
 
 export const ModalComponent = ({
   setIsModalOpen,
   generationGroup,
   nickNameGroup,
+  requestUser,
 }: ModalComponentProps): JSX.Element => {
   const { setGeneration } = generationGroup;
   const { nickName, setNickName } = nickNameGroup;
@@ -54,7 +57,7 @@ export const ModalComponent = ({
           />
         </div>
 
-        <div className='modal-containter-button'>
+        <div className='modal-containter-button' onClick={() => requestUser()}>
           등록
         </div>
       </div>
