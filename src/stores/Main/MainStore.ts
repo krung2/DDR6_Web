@@ -1,17 +1,11 @@
 import { autobind } from "core-decorators";
-import { observable } from "mobx";
-
-@autobind()
-export default class MainStore {
-
-  @observable users:  = [];
-}
-
+import { action, observable, runInAction } from "mobx";
+import MainRepository from "./Main.repository";
 
 export interface IUser {
   status: number;
   message: string;
-  data?: (DataEntity)[] | null;
+  data: (DataEntity)[];
 }
 export interface DataEntity {
   uniqueId: string;
@@ -27,3 +21,26 @@ export interface DataEntity {
   losses: number;
   kd: number;
 }
+
+@autobind()
+export default class MainStore {
+
+  @observable users: DataEntity[] = [];
+
+  @action
+  async hadleGetUser() {
+
+    try {
+
+      const { data }: { data: DataEntity[] } = await MainRepository.handleGetUser();
+
+      runInAction(() => {
+        this.users = data;
+      })
+    } catch (err) {
+
+      throw err;
+    }
+  }
+}
+

@@ -1,50 +1,76 @@
 import './User.component.scss';
 
-export const UserComponent = () => {
+interface UserComponentProps {
+  generation: string;
+  name: string;
+  userName: string;
+  profileImage: string;
+  level: number;
+  rank: string;
+  rankImage: string;
+  wl: number;
+  wins: number;
+  losses: number;
+  kd: number;
+}
+
+export const UserComponent = ({
+  generation,
+  name,
+  userName,
+  profileImage,
+  level,
+  rank,
+  rankImage,
+  wl,
+  wins,
+  losses,
+  kd
+}: UserComponentProps) => {
 
   return (
     <div className='userContainer'>
       <div className='userContainer-img'>
-        <img src='https://ubisoft-avatars.akamaized.net/909b47b7-57b7-46e3-ba78-f2971e06ae57/default_256_256.png' className='userCenter-profile' />
+        <img src={profileImage} className='userCenter-profile' alt='profile' />
       </div>
 
       <div className='userContainer-name'>
-        나는 민재
+        {userName}
       </div>
 
       <div className='userContainer-generation' >
-        손민재(5기)
+        {name}({generation}기)
       </div>
 
       <div className='userContainer-level' >
-        Lv.1
+        Lv.{level}
       </div>
 
       <div className='userContainer-rank' >
-        <img src='https://cdn.r6stats.com/seasons/ranks/unranked.svg' className='userContainer-rank-img' />
+        <img src={rankImage} className='userContainer-rank-img' alt='rank' />
       </div>
 
       <div className='usercontainer-rank-text' >
-        Unranked
+        {rank}
       </div>
 
       <div className='usercontainer-kd' >
-        KD : 0.75
+        KD : {kd}
       </div>
 
       <div className='usercontainer-con' >
         <div className='usercontainer-con-graph'>
           <div className='usercontainer-con-graph-okay' >
-            321
+            {wins}
           </div>
           <div className='usercontainer-con-graph-okay-loose'>
-            348
+            {losses}
           </div>
         </div>
       </div>
 
       <div>
-        47%
+        {wl}%
       </div>
     </div>
   )
