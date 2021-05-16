@@ -108,14 +108,17 @@ export const MainContainer = (): JSX.Element => {
 
           case 401:
             sweetAlerLib.Toast('warning', '로그인 후 다시 이용해주세요');
+            setIsModalOpen(true);
             return;
 
           case 403:
             sweetAlerLib.Toast('warning', '이미 가입되어 있습니다');
+            setIsModalOpen(true);
             return;
 
           case 410:
             sweetAlerLib.Toast('warning', '잘못된 닉네임입니다');
+            setIsModalOpen(true);
             return;
 
           default:
