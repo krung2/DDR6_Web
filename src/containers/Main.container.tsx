@@ -138,6 +138,7 @@ export const MainContainer = (): JSX.Element => {
 
     setGeneration(undefined);
     setNickName(undefined);
+    setName(undefined);
     setIsModalOpen(false);
 
     window.location.reload();
