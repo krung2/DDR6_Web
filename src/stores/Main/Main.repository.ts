@@ -1,8 +1,24 @@
 import axios from "axios";
-import { IUser } from "./MainStore";
+import { IReqBody, IUser } from "./MainStore";
 import { DDR6_SERVER } from '../../config/config.json';
 
 class MainRepository {
+
+  async handleAddUser(reqBody: IReqBody, token: string): Promise<void> {
+
+    try {
+
+      await axios.post(`${DDR6_SERVER}/user`, reqBody, {
+        headers: {
+          'access-token': token,
+        },
+      });
+
+    } catch (err) {
+
+      throw err;
+    }
+  }
 
   async handleGetUser(): Promise<IUser> {
 

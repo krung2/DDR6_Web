@@ -22,15 +22,22 @@ export interface DataEntity {
   kd: number;
 }
 
+export interface IReqBody {
+
+  generation: string;
+  userName: string;
+}
+
 @autobind()
 export default class MainStore {
 
   @observable users: DataEntity[] = [];
 
   @action
-  async handleAddUser() {
+  async handleAddUser(reqBody: IReqBody, token: string) {
 
     try {
+      await MainRepository.handleAddUser(reqBody, token);
 
     } catch (err) {
 

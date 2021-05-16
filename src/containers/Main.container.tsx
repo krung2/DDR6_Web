@@ -10,8 +10,9 @@ import { DataEntity } from "../stores/Main/MainStore";
 export const MainContainer = (): JSX.Element => {
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [isLogin, setIsLogin] = useState<boolean>(false);
+  const [isLogin, setIsLogin] = useState<boolean>(true);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isRequest, setIsRequest] = useState<boolean>(false);
 
   const [generation, setGeneration] = useState<string>();
   const [nickName, setNickName] = useState<string>();
@@ -20,11 +21,18 @@ export const MainContainer = (): JSX.Element => {
   const {
     users,
     hadleGetUser,
+    handleAddUser
   } = stores.MainStore;
 
   const requestAddUser: () => Promise<void> = useCallback(async () => {
 
-    // const token: string = await
+    const token: string | null = await localStorage.getItem('access-token');
+
+    if (token === null) {
+
+      sweetAlerLib.Toast('error', '토큰이 없습니다');
+      return;
+    }
 
     if (generation === undefined) {
 
@@ -37,6 +45,26 @@ export const MainContainer = (): JSX.Element => {
       sweetAlerLib.Toast('warning', '닉네임을 선택해주세요');
       return;
     }
+
+    const data = {
+      generation,
+      userName: nickName,
+    }
+
+    try {
+
+      setIsRequest(true);
+
+      await handleAddUser(data, token);
+
+      setIsRequest(false);
+    } catch (err) {
+
+      sweetAlerLib.Toast('warning', '잘못된 닉네임 입니다');
+      return;
+    }
+
+    sweetAlerLib.Toast('success', '등록 성공');
 
     setGeneration(undefined);
     setNickName(undefined);
@@ -100,6 +128,7 @@ export const MainContainer = (): JSX.Element => {
     <>
       <MainComponent
         isLogin={isLogin}
+        isRequest={isRequest}
         modalOpenGroup={GroupingState('isModalOpen', isModalOpen, setIsModalOpen)}
         generationGroup={GroupingState('generation', generation, setGeneration)}
         nickNameGroup={GroupingState('nickName', nickName, setNickName)}

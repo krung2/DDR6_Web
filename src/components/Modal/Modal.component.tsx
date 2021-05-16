@@ -3,6 +3,8 @@ import './Modal.component.scss';
 
 interface ModalComponentProps {
 
+  isRequest: boolean;
+
   setIsModalOpen: Dispatch<SetStateAction<boolean>>;
 
   generationGroup: {
@@ -19,6 +21,7 @@ interface ModalComponentProps {
 }
 
 export const ModalComponent = ({
+  isRequest,
   setIsModalOpen,
   generationGroup,
   nickNameGroup,
@@ -58,7 +61,7 @@ export const ModalComponent = ({
         </div>
 
         <div className='modal-containter-button' onClick={() => requestUser()}>
-          등록
+          {isRequest ? '전송중입니다' : '등록'}
         </div>
       </div>
     </>

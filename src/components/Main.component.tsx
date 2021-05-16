@@ -6,6 +6,7 @@ import { NavComopnent } from "./Nav/Nav.component"
 interface MainComponentProps {
 
   isLogin: boolean;
+  isRequest: boolean;
 
   modalOpenGroup: {
     isModalOpen: boolean,
@@ -29,6 +30,7 @@ interface MainComponentProps {
 
 export const MainComponent = ({
   isLogin,
+  isRequest,
   modalOpenGroup,
   generationGroup,
   nickNameGroup,
@@ -40,6 +42,7 @@ export const MainComponent = ({
   return (
     <>
       {isModalOpen ? <ModalComponent
+        isRequest={isRequest}
         setIsModalOpen={setIsModalOpen}
         generationGroup={generationGroup}
         nickNameGroup={nickNameGroup}

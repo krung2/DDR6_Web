@@ -39,7 +39,7 @@ export const UserComponent = ({
       </div>
 
       <div className='userContainer-generation' >
-        {name}({generation}기)
+        {name}({generation})
       </div>
 
       <div className='userContainer-level' >
