@@ -67,7 +67,7 @@ export const MainContainer = (): JSX.Element => {
 
     if (nickName === undefined || nickName === '') {
 
-      sweetAlerLib.Toast('warning', '닉네임을 선택해주세요');
+      sweetAlerLib.Toast('warning', '닉네임을 입력해주세요');
       return;
     }
 
