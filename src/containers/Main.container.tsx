@@ -24,7 +24,32 @@ export const MainContainer = (): JSX.Element => {
     handleAddUser
   } = stores.MainStore;
 
+  const logout: () => Promise<void> = useCallback(async () => {
+
+    await localStorage.removeItem('access-token');
+
+    setIsLogin(false);
+  }, [])
+
+  const checkLogin: () => Promise<void> = useCallback(async () => {
+
+    const token: string | null = await localStorage.getItem('access-token');
+
+    if (token === null) {
+
+      setIsLogin(false);
+      return;
+    }
+
+    setIsLogin(true);
+  }, [setIsLogin])
+
   const requestAddUser: () => Promise<void> = useCallback(async () => {
+
+    if (isRequest === true) {
+
+      return;
+    }
 
     const token: string | null = await localStorage.getItem('access-token');
 
@@ -60,8 +85,35 @@ export const MainContainer = (): JSX.Element => {
       setIsRequest(false);
     } catch (err) {
 
-      sweetAlerLib.Toast('warning', '잘못된 닉네임 입니다');
-      return;
+      if (err.response) {
+
+        setIsRequest(false);
+
+        switch (err.response.status) {
+
+          case 401:
+            sweetAlerLib.Toast('warning', '로그인 후 다시 이용해주세요');
+            return;
+
+          case 403:
+            sweetAlerLib.Toast('warning', '이미 가입되어 있습니다');
+            return;
+
+          case 410:
+            sweetAlerLib.Toast('warning', '잘못된 닉네임입니다');
+            return;
+
+          default:
+            sweetAlerLib.Toast('warning', '서버 오류');
+            return;
+
+        }
+      } else {
+
+        sweetAlerLib.Toast('warning', '연결 오류');
+        return;
+
+      }
     }
 
     sweetAlerLib.Toast('success', '등록 성공');
@@ -70,7 +122,9 @@ export const MainContainer = (): JSX.Element => {
     setNickName(undefined);
     setIsModalOpen(false);
 
-  }, [generation, nickName, setIsLoading])
+    window.location.reload();
+
+  }, [generation, nickName, handleAddUser, isRequest])
 
   const request: () => Promise<void> = useCallback(async () => {
 
@@ -78,17 +132,18 @@ export const MainContainer = (): JSX.Element => {
 
     try {
 
+      await checkLogin();
       await hadleGetUser();
 
       setIsLoading(false);
     } catch (err) {
 
     }
-  }, [hadleGetUser])
+  }, [hadleGetUser, checkLogin])
 
   useEffect(() => {
     request();
-  }, [hadleGetUser, users, request])
+  }, [request])
 
   const userInfo: JSX.Element[] = users.map((data: DataEntity) => {
     const {
@@ -134,6 +189,7 @@ export const MainContainer = (): JSX.Element => {
         nickNameGroup={GroupingState('nickName', nickName, setNickName)}
         userInfo={userInfo}
         requestUser={requestAddUser}
+        logout={logout}
       />
     </>
   )

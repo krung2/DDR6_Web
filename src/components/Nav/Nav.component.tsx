@@ -10,29 +10,38 @@ interface NavComopnentProps {
     setIsModalOpen: Dispatch<SetStateAction<boolean>>,
   }
 
+  logout: () => void;
 }
 
 export const NavComopnent = ({
   isLogin,
   modalOpenGroup,
+  logout,
 }: NavComopnentProps): JSX.Element => {
   const { setIsModalOpen } = modalOpenGroup;
 
   const url =
-    'http://dauth.b1nd.com/login?clientId=cd186f1597ce4365aa4067379ba91415fb75b926fb0b46bab1f247b4877cb9fb&redirectUrl=http://ddr6.com/redirect';
+    'http://dauth.b1nd.com/login?clientId=cd186f1597ce4365aa4067379ba91415fb75b926fb0b46bab1f247b4877cb9fb&redirectUrl=http://localhost:3000/redirect';
 
   return (
     <>
       <div className='navButtons'>
 
         {isLogin
-          ? <div className='navButtons-login' onClick={() => setIsModalOpen(true)} >
-            등록
-          </div>
+          ? <>
+            <div className='navButtons-login' onClick={() => logout()}>
+              로그아웃
+            </div>
+            <div className='navButtons-login' onClick={() => setIsModalOpen(true)} >
+              등록
+            </div>
+
+          </>
           : <a href={url}>
             <div className='navButtons-login'>
               로그인
             </div>
+
           </a>
         }
 

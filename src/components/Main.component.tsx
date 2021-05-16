@@ -26,6 +26,7 @@ interface MainComponentProps {
   userInfo: JSX.Element[];
 
   requestUser: () => void;
+  logout: () => void;
 }
 
 export const MainComponent = ({
@@ -36,6 +37,7 @@ export const MainComponent = ({
   nickNameGroup,
   userInfo,
   requestUser,
+  logout,
 }: MainComponentProps): JSX.Element => {
   const { isModalOpen, setIsModalOpen } = modalOpenGroup;
 
@@ -52,6 +54,7 @@ export const MainComponent = ({
       <NavComopnent
         isLogin={isLogin}
         modalOpenGroup={modalOpenGroup}
+        logout={logout}
       />
       {userInfo}
     </>
