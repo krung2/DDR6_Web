@@ -15,13 +15,15 @@ export const MainContainer = (): JSX.Element => {
   const [isRequest, setIsRequest] = useState<boolean>(false);
 
   const [generation, setGeneration] = useState<string>();
+  const [name, setName] = useState<string>();
   const [nickName, setNickName] = useState<string>();
 
   const { stores } = useStores();
   const {
     users,
     hadleGetUser,
-    handleAddUser
+    handleAddUser,
+    handleAddUserNot,
   } = stores.MainStore;
 
   const logout: () => Promise<void> = useCallback(async () => {
@@ -46,22 +48,28 @@ export const MainContainer = (): JSX.Element => {
 
   const requestAddUser: () => Promise<void> = useCallback(async () => {
 
-    if (isRequest === true) {
+    // if (isRequest === true) {
 
-      return;
-    }
+    //   return;
+    // }
 
-    const token: string | null = await localStorage.getItem('access-token');
+    // const token: string | null = await localStorage.getItem('access-token');
 
-    if (token === null) {
+    // if (token === null) {
 
-      sweetAlerLib.Toast('error', '토큰이 없습니다');
-      return;
-    }
+    //   sweetAlerLib.Toast('error', '토큰이 없습니다');
+    //   return;
+    // }
 
     if (generation === undefined) {
 
       sweetAlerLib.Toast('warning', '기수를 선택해주세요');
+      return;
+    }
+
+    if (name === undefined || name === '') {
+
+      sweetAlerLib.Toast('warning', '이름을 입력해주세요');
       return;
     }
 
@@ -71,8 +79,14 @@ export const MainContainer = (): JSX.Element => {
       return;
     }
 
+    // const data = {
+    //   generation,
+    //   userName: nickName,
+    // }
+
     const data = {
       generation,
+      name,
       userName: nickName,
     }
 
@@ -80,7 +94,8 @@ export const MainContainer = (): JSX.Element => {
 
       setIsRequest(true);
 
-      await handleAddUser(data, token);
+      // await handleAddUser(data, token);
+      await handleAddUserNot(data);
 
       setIsRequest(false);
     } catch (err) {
@@ -93,14 +108,17 @@ export const MainContainer = (): JSX.Element => {
 
           case 401:
             sweetAlerLib.Toast('warning', '로그인 후 다시 이용해주세요');
+            setIsModalOpen(true);
             return;
 
           case 403:
             sweetAlerLib.Toast('warning', '이미 가입되어 있습니다');
+            setIsModalOpen(true);
             return;
 
           case 410:
             sweetAlerLib.Toast('warning', '잘못된 닉네임입니다');
+            setIsModalOpen(true);
             return;
 
           default:
@@ -186,6 +204,7 @@ export const MainContainer = (): JSX.Element => {
         isRequest={isRequest}
         modalOpenGroup={GroupingState('isModalOpen', isModalOpen, setIsModalOpen)}
         generationGroup={GroupingState('generation', generation, setGeneration)}
+        nameGroup={GroupingState('name', name, setName)}
         nickNameGroup={GroupingState('nickName', nickName, setNickName)}
         userInfo={userInfo}
         requestUser={requestAddUser}

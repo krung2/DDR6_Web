@@ -27,6 +27,8 @@ export const TokenContainer = (): JSX.Element => {
     try {
       const token: string = await handleToken(code);
 
+      console.log(2);
+
       await localStorage.setItem('access-token', token);
 
       window.location.replace('/');
@@ -35,6 +37,8 @@ export const TokenContainer = (): JSX.Element => {
     } catch (err) {
       window.location.replace('/');
     }
+
+    window.location.replace('/');
   }, [])
 
   useEffect(() => {

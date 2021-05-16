@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IReqBody, IUser } from "./MainStore";
+import { IReqBody, IReqBodyNot, IUser } from "./MainStore";
 import { DDR6_SERVER } from '../../config/config.json';
 
 class MainRepository {
@@ -13,6 +13,18 @@ class MainRepository {
           'access-token': token,
         },
       });
+
+    } catch (err) {
+
+      throw err;
+    }
+  }
+
+  async handleAddUserNot(reqBody: IReqBodyNot): Promise<void> {
+
+    try {
+
+      await axios.post(`${DDR6_SERVER}/user/not`, reqBody);
 
     } catch (err) {
 

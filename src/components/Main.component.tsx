@@ -18,6 +18,11 @@ interface MainComponentProps {
     setGeneration: Dispatch<SetStateAction<string>>,
   }
 
+  nameGroup: {
+    name: string,
+    setName: Dispatch<SetStateAction<string>>,
+  }
+
   nickNameGroup: {
     nickName: string,
     setNickName: Dispatch<SetStateAction<string>>,
@@ -34,6 +39,7 @@ export const MainComponent = ({
   isRequest,
   modalOpenGroup,
   generationGroup,
+  nameGroup,
   nickNameGroup,
   userInfo,
   requestUser,
@@ -47,6 +53,7 @@ export const MainComponent = ({
         isRequest={isRequest}
         setIsModalOpen={setIsModalOpen}
         generationGroup={generationGroup}
+        nameGroup={nameGroup}
         nickNameGroup={nickNameGroup}
         requestUser={requestUser}
       /> : null}

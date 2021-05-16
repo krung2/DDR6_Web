@@ -27,7 +27,7 @@ export const NavComopnent = ({
     <>
       <div className='navButtons'>
 
-        {isLogin
+        {/* {isLogin
           ? <>
             <div className='navButtons-login' onClick={() => logout()}>
               로그아웃
@@ -43,7 +43,11 @@ export const NavComopnent = ({
             </div>
 
           </a>
-        }
+        } */}
+
+        <div className='navButtons-login' onClick={() => setIsModalOpen(true)} >
+          등록
+        </div>
 
       </div>
 
