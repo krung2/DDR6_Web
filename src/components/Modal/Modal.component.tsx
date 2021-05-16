@@ -12,6 +12,12 @@ interface ModalComponentProps {
     setGeneration: Dispatch<SetStateAction<string>>,
   }
 
+  nameGroup: {
+    name: string,
+    setName: Dispatch<SetStateAction<string>>,
+  }
+
+
   nickNameGroup: {
     nickName: string,
     setNickName: Dispatch<SetStateAction<string>>,
@@ -24,11 +30,13 @@ export const ModalComponent = ({
   isRequest,
   setIsModalOpen,
   generationGroup,
+  nameGroup,
   nickNameGroup,
   requestUser,
 }: ModalComponentProps): JSX.Element => {
   const { setGeneration } = generationGroup;
   const { nickName, setNickName } = nickNameGroup;
+  const { name, setName } = nameGroup;
 
   return (
     <>
@@ -50,6 +58,14 @@ export const ModalComponent = ({
             <option value='5기'>5기</option>
             <option value='6기'>6기</option>
           </select>
+        </div>
+
+        <div className='modal-container-dropbox'>
+          이름을 입력해주세요  <br />
+          <input type="text" placeholder='이름을 입력해주세요' value={name} onChange={
+            (e: ChangeEvent<HTMLInputElement>) => setName(e.target.value)
+          } className='modal-container-dropbox-box'
+          />
         </div>
 
         <div className='modal-container-dropbox'>

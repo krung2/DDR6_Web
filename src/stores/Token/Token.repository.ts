@@ -7,8 +7,10 @@ class TokenRepository {
 
     try {
 
+      console.log(code);
       const { data } = await axios.get(`${DDR6_SERVER}/token?code=${code}`)
 
+      console.log(2)
       return data;
     } catch (err) {
 

@@ -28,6 +28,13 @@ export interface IReqBody {
   userName: string;
 }
 
+export interface IReqBodyNot {
+
+  name: string;
+  generation: string;
+  userName: string;
+}
+
 @autobind()
 export default class MainStore {
 
@@ -38,6 +45,18 @@ export default class MainStore {
 
     try {
       await MainRepository.handleAddUser(reqBody, token);
+
+    } catch (err) {
+
+      throw err;
+    }
+  }
+
+  @action
+  async handleAddUserNot(reqBody: IReqBodyNot) {
+
+    try {
+      await MainRepository.handleAddUserNot(reqBody);
 
     } catch (err) {
 

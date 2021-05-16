@@ -11,6 +11,7 @@ export default class MainStore {
 
     try {
 
+      console.log(1);
       const { data } = await TokenRepository.handleToken(code);
 
       return data.token;
