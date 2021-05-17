@@ -11,7 +11,7 @@ export type generationType = 'all' | '6기' | '5기' | '4기' | '3기' | '2기' 
 
 export const MainContainer = (): JSX.Element => {
 
-  const generationTypeArr: generationType[] = ['all', '1기', '2기', '3기', '4기', '5기', '6기'];
+  const generationTypeArr: generationType[] = ['all', '4기', '5기', '6기'];
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isLogin, setIsLogin] = useState<boolean>(true);
