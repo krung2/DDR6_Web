@@ -7,13 +7,17 @@ import sweetAlerLib from "../libs/sweetAler.lib";
 import { useStores } from "../libs/useStores.lib"
 import { DataEntity } from "../stores/Main/MainStore";
 
+export type generationType = 'all' | '6기' | '5기' | '4기' | '3기' | '2기' | '1기';
+
 export const MainContainer = (): JSX.Element => {
+
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isLogin, setIsLogin] = useState<boolean>(true);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isRequest, setIsRequest] = useState<boolean>(false);
 
+  const [checkGeneration, setCheckGeneration] = useState<generationType>('all');
   const [generation, setGeneration] = useState<string>();
   const [name, setName] = useState<string>();
   const [nickName, setNickName] = useState<string>();
@@ -164,47 +168,65 @@ export const MainContainer = (): JSX.Element => {
     request();
   }, [request])
 
-  const userInfo: JSX.Element[] = users.map((data: DataEntity) => {
-    const {
-      uniqueId,
-      uplayId,
-      generation,
-      name,
-      userName,
-      profileImage,
-      level,
-      rank,
-      rankImage,
-      wl,
-      wins,
-      losses,
-      kd
-    } = data;
+  const filterItem = (item: DataEntity) => {
 
-    return (
-      <UserComponent
-        key={uniqueId}
-        uplayId={uplayId}
-        generation={generation}
-        name={name}
-        userName={userName}
-        profileImage={profileImage}
-        level={level}
-        rank={rank}
-        rankImage={rankImage}
-        wl={wl}
-        wins={wins}
-        losses={losses}
-        kd={kd}
-      />
-    )
-  })
+    if (checkGeneration === 'all') {
+
+      return true;
+    }
+
+    if (checkGeneration === item.generation) {
+
+      return true;
+    }
+
+    return false;
+  }
+
+  const userInfo: JSX.Element[] = users
+    .filter(filterItem)
+    .map((data: DataEntity) => {
+      const {
+        uniqueId,
+        uplayId,
+        generation,
+        name,
+        userName,
+        profileImage,
+        level,
+        rank,
+        rankImage,
+        wl,
+        wins,
+        losses,
+        kd
+      } = data;
+
+      return (
+        <UserComponent
+          key={uniqueId}
+          uplayId={uplayId}
+          generation={generation}
+          name={name}
+          userName={userName}
+          profileImage={profileImage}
+          level={level}
+          rank={rank}
+          rankImage={rankImage}
+          wl={wl}
+          wins={wins}
+          losses={losses}
+          kd={kd}
+        />
+      )
+    })
 
   return (
     <>
       <MainComponent
         isLogin={isLogin}
         isRequest={isRequest}
+        checkGenerationGroup={GroupingState('checkGeneration', checkGeneration, setCheckGeneration)}
         modalOpenGroup={GroupingState('isModalOpen', isModalOpen, setIsModalOpen)}
         generationGroup={GroupingState('generation', generation, setGeneration)}
         nameGroup={GroupingState('name', name, setName)}

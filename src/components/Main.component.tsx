@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from "react"
+import { generationType } from "../containers/Main.container";
 import { HeaderComponent } from "./Header/Header.component"
 import { ModalComponent } from "./Modal/Modal.component";
 import { NavComopnent } from "./Nav/Nav.component"
@@ -7,6 +8,11 @@ interface MainComponentProps {
 
   isLogin: boolean;
   isRequest: boolean;
+
+  checkGenerationGroup: {
+    isModalOpen: generationType,
+    setIsModalOpen: Dispatch<SetStateAction<generationType>>,
+  }
 
   modalOpenGroup: {
     isModalOpen: boolean,
