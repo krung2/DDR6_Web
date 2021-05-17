@@ -24,7 +24,11 @@ class MainRepository {
 
     try {
 
-      await axios.post(`${DDR6_SERVER}/user/not`, reqBody);
+      await axios.post(`${DDR6_SERVER}/user/not`, reqBody, {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        }
+      });
 
     } catch (err) {
 
@@ -36,7 +40,11 @@ class MainRepository {
 
     try {
 
-      const { data }: { data: IUser } = await axios.get(`${DDR6_SERVER}/user/all`);
+      const { data }: { data: IUser } = await axios.get(`${DDR6_SERVER}/user/all`, {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        }
+      });
 
       return data;
 
