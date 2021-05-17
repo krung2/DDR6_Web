@@ -1,3 +1,14 @@
+.hover {
+
+  cursor: pointer;
+
+  :hover {
+
+    box-shadow: 5px 5px 5px #c4c4c4;
+  }
+}
+
+
 .userContainer {
   margin: 30px auto;
 
@@ -12,6 +23,12 @@
   border-radius: 10px;
 
   z-index: 10;
+  color: black;
+
+  :hover {
+    box-shadow: none;
+  }
+
 
   .userContainer-img {
     width: 100px;

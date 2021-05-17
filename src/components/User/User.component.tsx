@@ -1,6 +1,7 @@
 import './User.component.scss';
 
 interface UserComponentProps {
+  uplayId: string
   generation: string;
   name: string;
   userName: string;
@@ -15,6 +16,7 @@ interface UserComponentProps {
 }
 
 export const UserComponent = ({
+  uplayId,
   generation,
   name,
   userName,
@@ -28,49 +30,55 @@ export const UserComponent = ({
   kd
 }: UserComponentProps) => {
 
+  const gotoR6 = () => {
+    window.location.href = `https://r6stats.com/stats/${uplayId}`;
+  };
+
   return (
-    <div className='userContainer'>
-      <div className='userContainer-img'>
-        <img src={profileImage} className='userCenter-profile' alt='profile' />
+    <div className='hover' >
+      <div className='userContainer' onClick={() => gotoR6()}>
+        <div className='userContainer-img' >
+          <img src={profileImage} className='userCenter-profile' alt='profile' />
+        </div>
+
+        <div className='userContainer-name'>
+          {userName}
+        </div>
+
+        <div className='userContainer-generation' >
+          {name}({generation})
       </div>
 
-      <div className='userContainer-name'>
-        {userName}
-      </div>
+        <div className='userContainer-level' >
+          Lv.{level}
+        </div>
 
-      <div className='userContainer-generation' >
-        {name}({generation})
-      </div>
+        <div className='userContainer-rank' >
+          <img src={rankImage} className='userContainer-rank-img' alt='rank' />
+        </div>
 
-      <div className='userContainer-level' >
-        Lv.{level}
-      </div>
+        <div className='usercontainer-rank-text' >
+          {rank}
+        </div>
 
-      <div className='userContainer-rank' >
-        <img src={rankImage} className='userContainer-rank-img' alt='rank' />
-      </div>
+        <div className='usercontainer-kd' >
+          KD : {kd}
+        </div>
 
-      <div className='usercontainer-rank-text' >
-        {rank}
-      </div>
-
-      <div className='usercontainer-kd' >
-        KD : {kd}
-      </div>
-
-      <div className='usercontainer-con' >
-        <div className='usercontainer-con-graph'>
-          <div className='usercontainer-con-graph-okay' >
-            {wins}
-          </div>
-          <div className='usercontainer-con-graph-okay-loose'>
-            {losses}
+        <div className='usercontainer-con' >
+          <div className='usercontainer-con-graph'>
+            <div className='usercontainer-con-graph-okay' >
+              {wins}
+            </div>
+            <div className='usercontainer-con-graph-okay-loose'>
+              {losses}
+            </div>
           </div>
         </div>
-      </div>
 
-      <div>
-        {wl}%
+        <div>
+          {wl}%
+      </div>
       </div>
     </div>
   )

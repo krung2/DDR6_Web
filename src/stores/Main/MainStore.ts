@@ -9,6 +9,7 @@ export interface IUser {
 }
 export interface DataEntity {
   uniqueId: string;
+  uplayId: string;
   generation: string;
   name: string;
   userName: string;

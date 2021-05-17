@@ -167,6 +167,7 @@ export const MainContainer = (): JSX.Element => {
   const userInfo: JSX.Element[] = users.map((data: DataEntity) => {
     const {
       uniqueId,
+      uplayId,
       generation,
       name,
       userName,
@@ -183,6 +184,7 @@ export const MainContainer = (): JSX.Element => {
     return (
       <UserComponent
         key={uniqueId}
+        uplayId={uplayId}
         generation={generation}
         name={name}
         userName={userName}
