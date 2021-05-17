@@ -20,8 +20,8 @@ export const NavComopnent = ({
 }: NavComopnentProps): JSX.Element => {
   const { setIsModalOpen } = modalOpenGroup;
 
-  const url =
-    'http://dauth.b1nd.com/login?clientId=cd186f1597ce4365aa4067379ba91415fb75b926fb0b46bab1f247b4877cb9fb&redirectUrl=http://localhost:3000/redirect';
+  // const url =
+  //   'http://dauth.b1nd.com/login?clientId=cd186f1597ce4365aa4067379ba91415fb75b926fb0b46bab1f247b4877cb9fb&redirectUrl=http://localhost:3000/redirect';
 
   return (
     <>

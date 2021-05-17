@@ -143,7 +143,7 @@ export const MainContainer = (): JSX.Element => {
 
     window.location.reload();
 
-  }, [generation, nickName, handleAddUser, isRequest])
+  }, [generation, nickName, handleAddUserNot, name])
 
   const request: () => Promise<void> = useCallback(async () => {
 
