@@ -1,24 +1,35 @@
 import { Dispatch, SetStateAction } from 'react';
+import { generationType } from '../../containers/Main.container';
 import './Nav.comopnent.scss';
 
 interface NavComopnentProps {
 
   isLogin: boolean;
 
+  checkGenerationGroup: {
+    checkGeneration: generationType,
+    setCheckGeneration: Dispatch<SetStateAction<generationType>>,
+  }
+
   modalOpenGroup: {
     isModalOpen: boolean,
     setIsModalOpen: Dispatch<SetStateAction<boolean>>,
   }
+
+  generationTypeArr: generationType[];
 
   logout: () => void;
 }
 
 export const NavComopnent = ({
   isLogin,
+  checkGenerationGroup,
   modalOpenGroup,
+  generationTypeArr,
   logout,
 }: NavComopnentProps): JSX.Element => {
   const { setIsModalOpen } = modalOpenGroup;
+  const { checkGeneration, setCheckGeneration } = checkGenerationGroup;
 
   // const url =
   //   'http://dauth.b1nd.com/login?clientId=cd186f1597ce4365aa4067379ba91415fb75b926fb0b46bab1f247b4877cb9fb&redirectUrl=http://localhost:3000/redirect';
@@ -26,6 +37,16 @@ export const NavComopnent = ({
   return (
     <>
       <div className='navButtons'>
+
+        {
+          generationTypeArr.map((generation: generationType) => {
+            return (
+              <div className={checkGeneration === generation ? "navButtons-select" : "navButtons-filter"} onClick={() => setCheckGeneration(generation)}>
+                {generation === 'all' ? '전체' : generation}
+              </div>
+            )
+          })
+        }
 
         {/* {isLogin
           ? <>

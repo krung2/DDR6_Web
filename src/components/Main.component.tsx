@@ -10,8 +10,8 @@ interface MainComponentProps {
   isRequest: boolean;
 
   checkGenerationGroup: {
-    isModalOpen: generationType,
-    setIsModalOpen: Dispatch<SetStateAction<generationType>>,
+    checkGeneration: generationType,
+    setCheckGeneration: Dispatch<SetStateAction<generationType>>,
   }
 
   modalOpenGroup: {
@@ -36,6 +36,8 @@ interface MainComponentProps {
 
   userInfo: JSX.Element[];
 
+  generationTypeArr: generationType[]
+
   requestUser: () => void;
   logout: () => void;
 }
@@ -43,11 +45,13 @@ interface MainComponentProps {
 export const MainComponent = ({
   isLogin,
   isRequest,
+  checkGenerationGroup,
   modalOpenGroup,
   generationGroup,
   nameGroup,
   nickNameGroup,
   userInfo,
+  generationTypeArr,
   requestUser,
   logout,
 }: MainComponentProps): JSX.Element => {
@@ -66,7 +70,9 @@ export const MainComponent = ({
       <HeaderComponent />
       <NavComopnent
         isLogin={isLogin}
+        checkGenerationGroup={checkGenerationGroup}
         modalOpenGroup={modalOpenGroup}
+        generationTypeArr={generationTypeArr}
         logout={logout}
       />
       {userInfo}
