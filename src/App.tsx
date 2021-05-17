@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router';
+import { Redirect, Route, Switch } from 'react-router';
 import { TokenContainer } from './containers/Token.container';
 import { MainPage } from './pages/Main.pages';
 
@@ -16,6 +16,7 @@ function App() {
         path='/redirect'
         render={() => <TokenContainer />}
       />
+      <Redirect to='/' />
     </Switch>
   );
 }
