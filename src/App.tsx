@@ -16,7 +16,6 @@ function App() {
         path='/redirect'
         render={() => <TokenContainer />}
       />
-      <Redirect to='/' />
     </Switch>
   );
 }
