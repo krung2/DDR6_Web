@@ -30,13 +30,9 @@ export const UserComponent = ({
   kd
 }: UserComponentProps) => {
 
-  const gotoR6 = () => {
-    window.location.href = `https://r6stats.com/stats/${uplayId}`;
-  };
-
   return (
     <div className='hover' >
-      <div className='userContainer' onClick={() => gotoR6()}>
+      <div className='userContainer' onClick={() => window.open(`https://r6stats.com/stats/${uplayId}`)}>
         <div className='userContainer-img' >
           <img src={profileImage} className='userCenter-profile' alt='profile' />
         </div>
