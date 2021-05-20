@@ -51,9 +51,9 @@ export const ModalComponent = ({
           기수를 선택해주세요 <br />
           <select className='modal-container-dropbox-box' onChange={(e) => setGeneration(e.target.value)}>
             <option selected disabled hidden>기수를 선택해주세요</option>
-            <option value='1기'>1기</option>
+            {/* <option value='1기'>1기</option>
             <option value='2기'>2기</option>
-            <option value='3기'>3기</option>
+            <option value='3기'>3기</option> */}
             <option value='4기'>4기</option>
             <option value='5기'>5기</option>
             <option value='6기'>6기</option>
